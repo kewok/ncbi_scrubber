@@ -38,6 +38,9 @@ Basic workflow
 
 #. Annotation - use these steps to fix issues in your discrepency report (.dr) and validation file (.val) after running `table2asn_gff <https://ftp.ncbi.nih.gov/toolbox/ncbi_tools/converters/by_program/table2asn_GFF/>`_
 	* Specify the first and last lines of your discrepency report containing the FATAL errors and extract these into a separate file using ``extract_lines.sh``
+
 	* Identify the locus tags for problematic features by running ``extract_bad_features.py`` on the output of extract_lines.sh; this will create a file called ``bad_loci.txt.``
+
 	* Purge those features via ``clean_gff_dr.py``
-	* Find specific feature errors in your validation file and remove them using ``find_fix_seqfeat_errors.py``. Note you might have to add specific feature errors to the python script.
+
+	* Find specific feature errors in your validation file and remove them using ``find_fix_seqfeat_errors.py``. Note you might have to add specific feature errors to the python script; as of May 10 2021 only ``SEQ_INST.StopInProtein`` is included
