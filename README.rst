@@ -9,13 +9,13 @@ Basic workflow
 #. Assembly - rename sequences and purge contaminants/rejected sequences from your fasta file.
 	* To rename a large number of sequence names to an NCBI compliant format, use ``id_rename.py`` to generate a new list of ids (``ids_new.txt``) and then search and replace the sequence names via
 
-	``$seqkit replace --pattern "(.+)" -r "{kv}" -k ids_new.txt my_old.fasta > otcm.fasta``
+	``seqkit replace --pattern "(.+)" -r "{kv}" -k ids_new.txt my_old.fasta > otcm.fasta``
 
 	* To remove segments NCBI rejects:
-		* copy and paste the sequence information flagged by NCBI into a csv file and run  ``$make_bed_file.py my_csv_generated.csv``. This will produce a file called ``bad.bed`` that specifies the regions to be masked 
+		* copy and paste the sequence information flagged by NCBI into a csv file and run  ``make_bed_file.py my_csv_generated.csv``. This will produce a file called ``bad.bed`` that specifies the regions to be masked 
 		*  mask those regions with X using `bedtools <https://bedtools.readthedocs.io>`_
 
-		``$bedtools maskfasta -fi input_sequence.fasta -bed bad.bed -fo sequence.fasta.out -mc X``
+		``bedtools maskfasta -fi input_sequence.fasta -bed bad.bed -fo sequence.fasta.out -mc X``
 
 		* Replaces the 'X's with blanks using:
 
